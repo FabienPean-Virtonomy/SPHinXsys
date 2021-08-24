@@ -18,6 +18,7 @@ if(WASM_BUILD)
     set(BUILD_WITH_DEPENDENCIES_SOURCE 1)
     message(WARNING "SPH_ONLY_STATIC_BUILD is forced on")
     set(SPH_ONLY_STATIC_BUILD 1)
+    add_definitions(-DSIMBODY_WITHOUT_LAPACK)
 endif(WASM_BUILD)
 
 
@@ -28,13 +29,6 @@ if(BUILD_WITH_DEPENDENCIES_SOURCE)
     # Simbody and clapack source code will be built with the project
     set(BUILD_WITH_SIMBODY 1)
     ###### Simbody ######
-    ###### oneTBB ######
-    # oneTBB source code will be built with the project
-    set(BUILD_WITH_ONETBB 1)
-    if(BUILD_WITH_ONETBB)
-        add_definitions(-DTBB_2021_2_0)
-    endif()
-    ###### oneTBB ######
     ###### Boost, only 3D ######
     # select only 3D cases to build, if not, Boost is needed for 2D cases
     set(ONLY_3D 1)
