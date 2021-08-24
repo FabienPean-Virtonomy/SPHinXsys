@@ -1,9 +1,9 @@
-[submodule "SPHINXsys/src/shared/simbody"]
-	path = SPHINXsys/src/shared/simbody
-	url = https://github.com/BenceVirtonomy/simbody
 [submodule "3rdparty/wasmtbb"]
 	path = 3rdparty/wasmtbb
 	url = git@github.com:hpcwasm/wasmtbb.git
 [submodule "3rdparty/eigen"]
 	path = 3rdparty/eigen
 	url = https://gitlab.com/libeigen/eigen.git
+[submodule "3rdparty/simbody"]
+	path = 3rdparty/simbody
+	url = https://github.com/BenceVirtonomy/simbody
