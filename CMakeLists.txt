@@ -23,12 +23,31 @@ if (EMSCRIPTEN)
     remove_definitions(-DTBB_2021_2_0)
     set(TBB_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/wasmtbb)
     set(EIGEN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/eigen)
-
+    set(SIMBODY_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/simbody/Simbody)
+    set(SIMTKCOMMON_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/simbody/SimTKcommon)
+    set(SIMTKMATH_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/simbody/SimTKmath)
     INCLUDE_DIRECTORIES("${TBB_ROOT}/include")
     INCLUDE_DIRECTORIES("${EIGEN_ROOT}")
+  
+    INCLUDE_DIRECTORIES("${SIMBODY_ROOT}/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Simulation/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Mechanics/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Scalar/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/SmallMatrix/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/BigMatrix/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Geometry/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Random/include")
+    INCLUDE_DIRECTORIES("${SIMTKCOMMON_ROOT}/Polynomial/include")
+    INCLUDE_DIRECTORIES("${SIMTKMATH_ROOT}/include")
+    INCLUDE_DIRECTORIES("${SIMTKMATH_ROOT}/Geometry/include")
+    INCLUDE_DIRECTORIES("${SIMTKMATH_ROOT}/Integrators/include")
 
     set(OBJDIR "${TBB_ROOT}/build/linux_wasm32_emscripten_emscripten_wasm32_release/")
     FILE(GLOB TBB_OBJECTS ${OBJDIR}/*.o)
+
+    add_subdirectory(3rdparty)
+
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -109,8 +128,6 @@ add_subdirectory(SPHINXsys)
 if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
-
-add_subdirectory(cases_user)
 
 if(ACTIVATE_CUDA)
     add_subdirectory(cases_test_gpu)
